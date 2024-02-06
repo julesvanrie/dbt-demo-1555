@@ -9,6 +9,7 @@ source as (
 renamed as (
 
     select
+        model || '_' || color || '_' || size as product_id,
         model,
         model_name,
         color,

@@ -8,5 +8,18 @@ sources:
         identifier: raw_cc_parcel
       - name: sales
         identifier: raw_cc_sales
+        columns:
+          - name: date_date
+            tests:
+              - not_null
+          - name: product_id
+            tests:
+              - not_null
+        tests:
+          - unique:
+              column_name: "date_date || '_' || product_id"
       - name: stock
         identifier: raw_cc_stock
+        tests:
+          - unique:
+              column_name: "model || '_' || color || '_' || size"

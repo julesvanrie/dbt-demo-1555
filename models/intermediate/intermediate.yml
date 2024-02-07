@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_raw__sales
+    columns:
+      - name: date_date
+        tests:
+          - not_null
+  - name: int_daily_sales
+    description: daily sales aggregated over all product_ids
+    columns:
+      - name: date_date
+        description: date of the purchase
+        tests:
+          - not_null
+          - unique

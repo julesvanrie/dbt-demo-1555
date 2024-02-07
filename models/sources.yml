@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw_data_circle
+    tables:
+      - name: parcel
+        identifier: raw_cc_parcel
+        columns:
+          - name: transporter
+            tests:
+              - accepted_values:
+                  values: ["colissimo", "ups"]
+      - name: sales
+        identifier: raw_cc_sales
+        description: daily sales data per product_id
+        columns:
+          - name: date_date
+            tests:
+              - not_null
+          - name: product_id
+            description: this is the product id
+            tests:
+              - not_null
+        tests:
+          - unique:
+              column_name: "date_date || '_' || product_id"
+      - name: stock
+        identifier: raw_cc_stock
+        tests:
+          - unique:
+              column_name: "model || '_' || color || '_' || size"
+      - name: parcel_product
+        identifier: raw_cc_parcel_product
